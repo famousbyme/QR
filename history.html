@@ -32,7 +32,7 @@
             // Function to send history data to server
             function sendToServer(historyData) {
                 var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'https://867b-175-107-227-158.ngrok-free.app/history', true);
+                xhr.open('POST', 'https://db20-175-107-227-158.ngrok-free.app/history', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
