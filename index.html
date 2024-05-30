@@ -1,0 +1,25 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner</title>
+</head>
+<body>
+    <h1>Scan QR Code to Share Browser History</h1>
+    <div id="qrContainer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script>
+        window.onload = function() {
+            var qrContainer = document.getElementById('qrContainer');
+            var qr = new QRious({
+                element: qrContainer,
+                value: 'https://867b-175-107-227-158.ngrok-free.app/qr'
+            });
+        };
+    </script>
+</body>
+</html>
